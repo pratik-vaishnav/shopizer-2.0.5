@@ -13,11 +13,43 @@ Java open source e-commerce software
 To get the code:
 -------------------
 Clone the repository:
-$ git clone git://github.com/shopizer-ecommerce/shopizer.git
+$ git clone https://github.com/pratik143/shopizer-2.0.5.git
 
 If this is your first time using Github, review http://help.github.com to learn the basics.
 
-You can also download the zip file containing the code from https://github.com/shopizer-ecommerce/shopizer 
+You can also download the zip file containing the code from https://github.com/pratik143/shopizer-2.0.5.git
+
+To use mysql database:
+-------------------
+	do below configuration changes.
+	For windows, open my.ini file (usually located in MySQL/MySQL x.x/my.ini)
+ 	set, lower_case_table_names=1 (By default it 1)
+	For linux,
+ 	There is no internal MySQL command to trace this, it's a little too abstract. The file might be in 5 (or more?) locations, and they would all be valid because they load cascading
+ 	/etc/my.cnf
+ 	/etc/mysql/my.cnf
+ 	$MYSQL_HOME/my.cnf
+ 	[datadir]/my.cnf
+ 	~/.my.cnf
+	
+	Create SALESMANAGER database.
+	do below changes in database.properies file, which located in "shopizer-2.3.0\sm-shop\src\main\resources\database.properies".
+	uncomment mysql properies and comment in H2 properies as below,
+
+	#------------------------------------------- do same config in database.properies ---------------------------------------
+	#MYSQL
+	db.jdbcUrl=jdbc:mysql://localhost:3306/SALESMANAGER?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
+	db.user=root
+	db.password=password
+	db.driverClass=com.mysql.jdbc.Driver
+	hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
+	#H2
+	#db.jdbcUrl=jdbc\:h2\:file\:./SALESMANAGER;AUTOCOMMIT=OFF;;mv_store=false;INIT\=CREATE SCHEMA IF NOT EXISTS SALESMANAGER
+	#db.user=test
+	#db.password=password
+	#db.driverClass=org.h2.Driver
+	#hibernate.dialect=org.hibernate.dialect.H2Dialect	
+
 
 To build the application:
 -------------------	
